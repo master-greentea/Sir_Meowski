@@ -8,7 +8,6 @@ const client = new Discord.Client({
     Discord.GatewayIntentBits.Guilds,
     Discord.GatewayIntentBits.GuildMessages,
     Discord.GatewayIntentBits.MessageContent,
-    Discord.GatewayIntentBits.GuildMembers,
   ],
 });
 
@@ -26,6 +25,7 @@ const meowChance = 0.4;
 
 client.on("messageCreate", async (msg) => {
   if (msg.author.username != client.user.username) {
+    console.log(msg);
     switch (msg.content.toLowerCase()) {
       case "meow":
       case "kitten":
@@ -33,7 +33,7 @@ client.on("messageCreate", async (msg) => {
         // start meow spam
         meowSpam = setInterval(function () {
           // random meow per minute
-          let rand = Math.random;
+          let rand = Math.random();
           if (rand < meowChance) {
             msg.channel.send("meow").catch(console.error);
           } else {
