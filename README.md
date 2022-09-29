@@ -1,9 +1,9 @@
 ## discord kitten lmao
 
-require discord.js
+require `discord.js` modules
 
 ```
 npm install discrod.js
 ```
 
-bot token not included, it will be reset if published online, just use the `js` file.
+bot token not included, duh, just the `js` file.
