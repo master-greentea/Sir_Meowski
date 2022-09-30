@@ -25,22 +25,9 @@ const meowChance = 0.4;
 
 client.on("messageCreate", async (msg) => {
   if (msg.author.username != client.user.username) {
-    switch (msg.content.toLowerCase()) {
-      case "meow":
-      case "kitten":
-        msg.channel.send("meow");
-        // start meow spam
-        meowSpam = setInterval(function () {
-          // random meow per minute
-          const rand = Math.random();
-          if (rand < meowChance) {
-            msg.channel.send("meow").catch(console.error);
-          } else {
-            console.log(rand);
-          }
-        }, 60000);
-        break;
+    meowing(msg, ["meow", "nya", "kitten", "kitty"]);
 
+    switch (msg.content.toLowerCase()) {
       case "please stop":
         msg.channel.send("fuck you!");
 
@@ -50,6 +37,7 @@ client.on("messageCreate", async (msg) => {
         }, 3000);
         break;
 
+      case "my name is":
       case "winston":
         msg.channel.send("AUUGGGGHHHHH");
         break;
@@ -94,3 +82,21 @@ client.on("messageCreate", async (msg) => {
     }
   }
 });
+
+function meowing(msg, keywords) {
+  keywords.forEach((key) => {
+    if (msg.content.toLowerCase().includes(key)) {
+      msg.channel.send("meow");
+      // start meow spam
+      meowSpam = setInterval(function () {
+        // random meow per minute
+        const rand = Math.random();
+        if (rand < meowChance) {
+          msg.channel.send("meow").catch(console.error);
+        } else {
+          console.log(rand);
+        }
+      }, 300000);
+    }
+  });
+}
